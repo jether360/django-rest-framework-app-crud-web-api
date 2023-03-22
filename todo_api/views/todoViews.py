@@ -16,7 +16,7 @@ class Todo(generics.GenericAPIView):
 
     #using swagger parameters to specify the page and page size in get method
     @swagger_auto_schema(
-        operation_description="Get a paginated list of MyModel objects",
+        operation_description="Get a paginated list of Todo objects",
         manual_parameters=[
             openapi.Parameter('page', in_=openapi.IN_QUERY, description='Page number', type=openapi.TYPE_INTEGER),
             openapi.Parameter('page_size', in_=openapi.IN_QUERY, description='Number of items per page', type=openapi.TYPE_INTEGER),

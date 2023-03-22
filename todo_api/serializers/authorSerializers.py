@@ -1,13 +1,14 @@
 from rest_framework import serializers
 from todo_api.models import Author
+from todo_api.serializers.cardSerializers import CardSerializer
 
-
+#serializers is just like a response you can modify the field, you want to display in get method
 class AuthorSerializer(serializers.ModelSerializer):
-    #name = serializers.Field(required=True)
+    cards = CardSerializer(many=True, read_only=True)
 
     class Meta:
         model = Author
-        fields = '__all__'
+        fields =  ['id', 'name', 'cards']
 
 
 
