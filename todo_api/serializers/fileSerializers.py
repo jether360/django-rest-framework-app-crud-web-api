@@ -5,7 +5,7 @@ from todo_api.models import File
 class FilePostSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
-        fields = ('id', 'filename', 'file')
+        fields = '__all__'
 
 #this serializer is for get method
 class FileGetSerializer(serializers.ModelSerializer):

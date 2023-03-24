@@ -8,15 +8,15 @@ from todo_api.serializers.fileSerializers import FilePostSerializer, FileGetSeri
 class FileUploadView(generics.ListCreateAPIView):
     queryset = File.objects.all()
     serializer_class = FilePostSerializer
-    parser_class = (MultiPartParser, FileUploadParser)
+    parser_class = (MultiPartParser, FormParser)
 
-    #def post(self, request, *args, **kwargs):
-        #file_serializer = self.serializer_class(data=request.data)
-        #if file_serializer.is_valid():
-            #file_serializer.save()
-            #return Response(file_serializer.data, status=status.HTTP_201_CREATED)
-        #else:
-            #return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, *args, **kwargs):
+        file_serializer = FilePostSerializer(data=request.data)
+        if file_serializer.is_valid():
+            file_serializer.save()
+            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #class FileListView(APIView):
     #def get(self, request):

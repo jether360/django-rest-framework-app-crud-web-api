@@ -74,7 +74,7 @@ class Picture(models.Model):
         #def __str__(self) -> str:
             #return self.cards
 
-#File upload table (model)
+#File upload table (model) (not working)
 class File(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     filename = models.CharField(max_length=255)
@@ -84,6 +84,21 @@ class File(models.Model):
 
     class Meta:
         db_table = "tbl_file"
+        ordering = ['-createdAt']
+
+        def __str__(self) -> str:
+            return self.filename
+
+#File upload table (model)
+class FileUpload(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    filename = models.CharField(max_length=255)
+    file = models.FileField(upload_to='files/')
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "tbl_file_upload"
         ordering = ['-createdAt']
 
         def __str__(self) -> str:
