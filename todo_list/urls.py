@@ -25,6 +25,8 @@ urlpatterns = [
     path('api/book/', include('todo_api.urls.bookUrls')),
     path('api/author/', include('todo_api.urls.authorUrls')),
     path('api/card/', include('todo_api.urls.cardUrls')),
+    path('api/picture/', include('todo_api.urls.pictureUrls')),
+    path('api/file/', include('todo_api.urls.fileUrls')),
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',
             schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger',

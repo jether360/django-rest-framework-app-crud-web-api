@@ -60,5 +60,31 @@ class Cards(models.Model):
         def __str__(self) -> str:
             return self.cards
 
+#Picture upload table (model)
+class Picture(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    image = models.ImageField(upload_to='pictures/')
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        db_table = "tbl_pictures"
+        ordering = ['-createdAt']
 
+        #def __str__(self) -> str:
+            #return self.cards
+
+#File upload table (model)
+class File(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    filename = models.CharField(max_length=255)
+    file = models.FileField(upload_to='files/')
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "tbl_file"
+        ordering = ['-createdAt']
+
+        def __str__(self) -> str:
+            return self.filename
